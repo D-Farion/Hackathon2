@@ -1,8 +1,19 @@
 [gd_scene format=3 uid="uid://cem51pbiya680"]
 
+[ext_resource type="Script" uid="uid://b624e1jkjgqls" path="res://characters/player/player_charcter.gd" id="1_sd7gc"]
+[ext_resource type="Texture2D" uid="uid://dh8stq4ju0p7n" path="res://art/craftpix-net-788364-free-slime-mobs-pixel-art-top-down-sprite-pack/PNG/Slime1/Without_shadow/Slime1_Idle_without_shadow.png" id="1_wrqd7"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_paubx"]
+radius = 7.28011
 
 [node name="PlayerCharcter" type="CharacterBody2D" unique_id=1065657808]
+script = ExtResource("1_sd7gc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2079046707]
 shape = SubResource("CircleShape2D_paubx")
+
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=332693211]
+position = Vector2(0, -4)
+texture = ExtResource("1_wrqd7")
+hframes = 6
+vframes = 4
