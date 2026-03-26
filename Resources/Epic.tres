@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://dnpxqulke7b13"]
+
+[ext_resource type="Script" uid="uid://c0syd8wv7umol" path="res://characters/Enemy/EnemyType.gd" id="1_1ww3j"]
+[ext_resource type="Texture2D" uid="uid://dfrdc4mndo4d" path="res://art/64x64.png" id="2_53mb6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnahu"]
+atlas = ExtResource("2_53mb6")
+region = Rect2(393.43414, 7622.7715, 47.07483, 51.315918)
+
+[resource]
+script = ExtResource("1_1ww3j")
+title = "Epic"
+texture = SubResource("AtlasTexture_wnahu")
+health = 60.0
+damage = 12.0
+scale = Vector2(0.4, 0.4)
+metadata/_custom_type_script = "uid://c0syd8wv7umol"

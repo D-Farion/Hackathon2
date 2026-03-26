@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://cy53xe8yuhb46"]
+
+[ext_resource type="Script" uid="uid://c0syd8wv7umol" path="res://characters/Enemy/EnemyType.gd" id="1_rdwy4"]
+[ext_resource type="Texture2D" uid="uid://dfrdc4mndo4d" path="res://art/64x64.png" id="2_pmopm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nix3s"]
+atlas = ExtResource("2_pmopm")
+region = Rect2(576.31226, 4287.766, 64.38574, 63.614746)
+
+[resource]
+script = ExtResource("1_rdwy4")
+title = "Elite"
+texture = SubResource("AtlasTexture_nix3s")
+health = 100.0
+damage = 25.0
+scale = Vector2(0.55, 0.55)
+metadata/_custom_type_script = "uid://c0syd8wv7umol"

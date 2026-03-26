@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://b6uyjxwx0wlx8"]
 
 [ext_resource type="PackedScene" uid="uid://cem51pbiya680" path="res://characters/player/player_charcter.tscn" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://ba4ri6o64uk2h" path="res://Scenes/spawner.tscn" id="2_fj7yv"]
+[ext_resource type="Script" uid="uid://c0syd8wv7umol" path="res://characters/Enemy/EnemyType.gd" id="3_dwbse"]
+[ext_resource type="Resource" uid="uid://c81qlbtlv3vp2" path="res://Resources/Basic.tres" id="4_pkg7o"]
+[ext_resource type="Resource" uid="uid://dnpxqulke7b13" path="res://Resources/Epic.tres" id="5_gbfbk"]
+[ext_resource type="Resource" uid="uid://cy53xe8yuhb46" path="res://Resources/Elite.tres" id="6_ioo17"]
 
 [node name="World" type="Node2D" unique_id=304163572]
 
@@ -8,3 +13,7 @@
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1143464662]
 zoom = Vector2(2, 2)
+
+[node name="Spawner" parent="." unique_id=1288933728 node_paths=PackedStringArray("player") instance=ExtResource("2_fj7yv")]
+player = NodePath("../PlayerCharcter")
+enemy_types = Array[ExtResource("3_dwbse")]([ExtResource("4_pkg7o"), ExtResource("5_gbfbk"), ExtResource("6_ioo17")])

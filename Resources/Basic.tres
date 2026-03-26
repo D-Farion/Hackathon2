@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://c81qlbtlv3vp2"]
+
+[ext_resource type="Script" uid="uid://c0syd8wv7umol" path="res://characters/Enemy/EnemyType.gd" id="1_umksa"]
+[ext_resource type="Texture2D" uid="uid://dfrdc4mndo4d" path="res://art/64x64.png" id="2_c1gag"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5bek"]
+atlas = ExtResource("2_c1gag")
+region = Rect2(129.59412, 7236.8896, 60.788208, 60.788574)
+
+[resource]
+script = ExtResource("1_umksa")
+title = "Basic"
+texture = SubResource("AtlasTexture_r5bek")
+health = 20.0
+damage = 5.0
+scale = Vector2(0.3, 0.3)
+metadata/_custom_type_script = "uid://c0syd8wv7umol"
