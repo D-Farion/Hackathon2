@@ -48,3 +48,8 @@ func _on_timer_timeout() -> void:
 	second += 1
 	var wave = second / 10   #incease wave every 10 seconds
 	amount(5 + wave * 2)
+
+
+func _on_pattern_timeout() -> void:
+	for i in range(75):
+		spawn(get_random_position())

@@ -5,7 +5,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2fcwy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8mng"]
-size = Vector2(6, 6)
+size = Vector2(13, 13)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1992870628]
 collision_layer = 2

@@ -3,17 +3,49 @@
 [ext_resource type="Script" uid="uid://b624e1jkjgqls" path="res://characters/player/player_charcter.gd" id="1_sd7gc"]
 [ext_resource type="Texture2D" uid="uid://dh8stq4ju0p7n" path="res://art/craftpix-net-788364-free-slime-mobs-pixel-art-top-down-sprite-pack/PNG/Slime1/Without_shadow/Slime1_Idle_without_shadow.png" id="1_wrqd7"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_paubx"]
-radius = 7.28011
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sd7gc"]
+size = Vector2(13.076924, 13.076924)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2c8f"]
+size = Vector2(17, 17)
 
 [node name="PlayerCharcter" type="CharacterBody2D" unique_id=1065657808]
 script = ExtResource("1_sd7gc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2079046707]
-shape = SubResource("CircleShape2D_paubx")
+position = Vector2(0.5, -0.5)
+scale = Vector2(1.3, 1.3)
+shape = SubResource("RectangleShape2D_sd7gc")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=332693211]
-position = Vector2(0, -4)
+position = Vector2(0, -1)
 texture = ExtResource("1_wrqd7")
 hframes = 6
 vframes = 4
+
+[node name="SelfDamage" type="Area2D" parent="." unique_id=673817926]
+position = Vector2(-7, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="SelfDamage" unique_id=2127406747]
+unique_name_in_owner = true
+position = Vector2(7.5, -0.5)
+shape = SubResource("RectangleShape2D_x2c8f")
+
+[node name="Health" type="ProgressBar" parent="." unique_id=856598608]
+unique_name_in_owner = true
+offset_left = -31.0
+offset_top = -38.0
+offset_right = 33.0
+offset_bottom = -11.0
+value = 100.0
+
+[node name="Timer" type="Timer" parent="." unique_id=690571049]
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=929102155]
+zoom = Vector2(2, 2)
+
+[connection signal="body_entered" from="SelfDamage" to="." method="_on_self_damage_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

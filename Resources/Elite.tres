@@ -12,6 +12,6 @@ script = ExtResource("1_rdwy4")
 title = "Elite"
 texture = SubResource("AtlasTexture_nix3s")
 health = 100.0
-damage = 25.0
+damage = 8.0
 scale = Vector2(0.55, 0.55)
 metadata/_custom_type_script = "uid://c0syd8wv7umol"

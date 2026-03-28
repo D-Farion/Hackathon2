@@ -12,6 +12,6 @@ script = ExtResource("1_umksa")
 title = "Basic"
 texture = SubResource("AtlasTexture_r5bek")
 health = 20.0
-damage = 5.0
+damage = 1.0
 scale = Vector2(0.3, 0.3)
 metadata/_custom_type_script = "uid://c0syd8wv7umol"
