@@ -34,6 +34,11 @@ func _ready() -> void:
 		Stats.Faction.ENEMY:
 			set_collision_mask_value(1, true)
 	
+	# check overlaps that already exist on spawn
+	await get_tree().physics_frame
+	for area in get_overlapping_areas():
+		_on_area_entered(area)
+	
 func _on_area_entered(area: Area2D) -> void:
 	if not area.has_method("receive_hit"):
 		return

@@ -4,7 +4,6 @@ extends CharacterBody2D
 @export var player_reference : CharacterBody2D
 @export var stats: Stats
 var direction : Vector2
-var speed : float = 75
 
 var type : Enemy:
 	set(value):

@@ -63,6 +63,9 @@ func setup_stats() -> void:
 	recalulate_stats()
 	health = current_max_health
 
+func take_damage(amount: float) -> void:
+	health -= amount
+
 func add_buff(buff: StatBuff)-> void:
 	#can optimize for multiple buffs in 1 frame
 	stat_buffs.append(buff)

@@ -9,6 +9,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8mng"]
 size = Vector2(13, 13)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_a8mng"]
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1992870628]
 collision_layer = 2
 collision_mask = 2
@@ -25,3 +27,6 @@ shape = SubResource("RectangleShape2D_a8mng")
 script = ExtResource("3_fmvix")
 owner_stats = ExtResource("2_a8mng")
 metadata/_custom_type_script = "uid://wh01o5hobmcl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1741971513]
+shape = SubResource("CircleShape2D_a8mng")

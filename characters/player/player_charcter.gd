@@ -17,7 +17,7 @@ func _ready() -> void:
 func _on_attack_timer_timeout() -> void:
 	var mouse_dir: Vector2 = (get_global_mouse_position() - global_position).normalized()
 	var hit_log: HitLog = HitLog.new()
-	var hitbox = HitBox.new(stats, 0.5, hitbox_shape, hit_log)
+	var hitbox = HitBox.new(stats, 0.5, hitbox_shape.duplicate(), hit_log)
 	add_child(hitbox)
 	hitbox.global_position = global_position + mouse_dir * 40
 
