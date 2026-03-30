@@ -10,12 +10,15 @@ var type : Enemy:
 		type = value
 		$Sprite2D.texture = value.texture
 		$Sprite2D.scale = value.scale
+		stats = stats.duplicate()
 		stats.base_attack = value.damage
 		stats.base_max_health = value.health
 		stats.setup_stats()
+		stats.health_depleted.connect(_on_death)
+		$HurtBox.owner_stats = stats
 		
 func _ready() -> void:
-	stats.health_depleted.connect(_on_death)
+	pass
 
 func _on_death() -> void:
 	queue_free()
