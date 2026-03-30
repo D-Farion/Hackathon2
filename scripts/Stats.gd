@@ -10,7 +10,10 @@ enum BuffableStats {
 	MAX_HEALTH,
 	DEFENSE,
 	ATTACK,
-	
+	ATTACK_SPEED,
+	MOVE_SPEED,
+	CRIT_RATE,
+	CRIT_DAMAGE,
 }
 
 const STAT_CRUVES: Dictionary[BuffableStats, Curve] = {
@@ -25,7 +28,6 @@ signal health_depleted
 signal health_changed(cur_health: int, max_health: int)
 
 @export var base_max_health: float = 100.0
-@export var base_health_regen: float = 1.0
 @export var base_defense: float = 10.0
 @export var base_attack: float = 10.0
 @export var base_attack_speed: float = 1.0
@@ -42,13 +44,17 @@ var level: int:
 var current_attack: float = 10.0
 var current_max_health: float = 100.0
 var current_defense: float = 10.0
+var current_attack_speed: float = 1.0
+var current_move_speed: float = 100.0
+var current_crit_rate: float = 0.0
+var current_crit_damage: float = 2.0
 
 var health: float = 0.0: set = _on_health_set
 
 var stat_buffs: Array[StatBuff]
 
 func _init() -> void:
-	#Weird quirk that if unique values on export variables set after init. 
+	#Weird quirk that if unique values on export variables are set after init. 
 	#So we have to wait till after the init function to setup unique stats.
 	setup_stats.call_deferred()
 
@@ -115,5 +121,5 @@ func _on_exp_set(new_value: int) -> void:
 	var old_level: int = level
 	experience = new_value
 
-	if not old_level== level:
+	if not old_level == level:
 		recalulate_stats()

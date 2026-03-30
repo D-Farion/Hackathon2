@@ -57,5 +57,7 @@ autostart = true
 [node name="Camera2D" type="Camera2D" parent="." unique_id=929102155]
 zoom = Vector2(2, 2)
 
+[node name="AttackTimer" type="Timer" parent="." unique_id=2000810091]
+
 [connection signal="body_entered" from="SelfDamage" to="." method="_on_self_damage_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

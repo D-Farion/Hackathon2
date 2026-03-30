@@ -19,10 +19,6 @@ config/icon="res://icon.svg"
 
 enabled=PackedStringArray("res://addons/collapse_folders/plugin.cfg")
 
-[global_group]
-
-attack=""
-
 [input]
 
 left={

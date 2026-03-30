@@ -4,19 +4,22 @@ extends CharacterBody2D
 @export var display_name : StringName = &"player"
 @export var hitbox_shape: Shape2D
 @export var stats: Stats
+@onready var attack_timer: Timer = $AttackTimer
 
 func _ready() -> void:
 	# Runs once when the node enters the scene tree
 	stats.health_changed.connect(_on_health_changed)
+	attack_timer.wait_time = 1.0 / stats.base_attack_speed
+	attack_timer.timeout.connect(_on_attack_timer_timeout)
+	attack_timer.start()
 	
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack") and not event.is_echo():
-		var hit_log: HitLog = HitLog.new()
-		for n in 1: #number of hitboxes attack will have 
-			var hitbox = HitBox.new(stats, 0.5, hitbox_shape, hit_log)
-			add_child(hitbox)
-			hitbox.global_position = global_position + Vector2(40, 0)
+func _on_attack_timer_timeout() -> void:
+	var mouse_dir: Vector2 = (get_global_mouse_position() - global_position).normalized()
+	var hit_log: HitLog = HitLog.new()
+	var hitbox = HitBox.new(stats, 0.5, hitbox_shape, hit_log)
+	add_child(hitbox)
+	hitbox.global_position = global_position + mouse_dir * 40
 
 func _physics_process(delta: float) -> void:
 	# Basic 2D movement 
