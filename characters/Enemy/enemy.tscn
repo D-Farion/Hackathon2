@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://jbjp5smoosc6"]
 
 [ext_resource type="Script" uid="uid://b7y3klr7rgk1d" path="res://characters/Enemy/enemy.gd" id="1_byhr8"]
+[ext_resource type="Resource" uid="uid://c6gwlnps6yx8x" path="res://Resources/enemy_stats.tres" id="2_a8mng"]
+[ext_resource type="Script" uid="uid://wh01o5hobmcl" path="res://scripts/HurtBox.gd" id="3_fmvix"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2fcwy"]
 
@@ -11,9 +13,15 @@ size = Vector2(13, 13)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_byhr8")
+stats = ExtResource("2_a8mng")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2019977732]
 texture = SubResource("PlaceholderTexture2D_2fcwy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=566227176]
 shape = SubResource("RectangleShape2D_a8mng")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1748581546]
+script = ExtResource("3_fmvix")
+owner_stats = ExtResource("2_a8mng")
+metadata/_custom_type_script = "uid://wh01o5hobmcl"

@@ -1,7 +1,7 @@
 class_name HurtBox
 extends Area2D
 
-@onready var owner_stats: Stats = owner.stats
+@export var owner_stats: Stats
 
 func _ready() -> void:
 	monitoring = false

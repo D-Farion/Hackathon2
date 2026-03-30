@@ -28,7 +28,6 @@ func spawn(pos : Vector2):
 	
 	#each minute a new enemy will spawn
 	enemy_instance.type = enemy_types[min(minute, enemy_types.size()-1)]
-	enemy_instance.get_node("Sprite2D").scale = enemy_instance.type.scale
 	
 	enemy_instance.position = pos
 	enemy_instance.player_reference = player

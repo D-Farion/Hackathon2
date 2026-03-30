@@ -45,7 +45,7 @@ func _on_health_changed(cur_health: float, max_health: float) -> void:
 	%Health.value = cur_health
 
 func _on_self_damage_body_entered(body: Node2D) -> void:
-	take_damage(body.damage)
+	take_damage(body.stats.current_attack)
 
 func _on_timer_timeout() -> void:
 	%Collision.set_deferred("disabled", true)
