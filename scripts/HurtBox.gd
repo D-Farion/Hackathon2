@@ -14,5 +14,5 @@ func _ready() -> void:
 		Stats.Faction.ENEMY:
 			set_collision_layer_value(1, true)
 			
-func recieve_hit(damage: float) -> void:
-		owner_stats.take_damage(damage)
+func receive_hit(damage: float) -> void:
+	owner_stats.take_damage(damage)
