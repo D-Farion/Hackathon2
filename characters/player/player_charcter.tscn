@@ -2,6 +2,14 @@
 
 [ext_resource type="Script" uid="uid://b624e1jkjgqls" path="res://characters/player/player_charcter.gd" id="1_sd7gc"]
 [ext_resource type="Texture2D" uid="uid://dh8stq4ju0p7n" path="res://art/craftpix-net-788364-free-slime-mobs-pixel-art-top-down-sprite-pack/PNG/Slime1/Without_shadow/Slime1_Idle_without_shadow.png" id="1_wrqd7"]
+[ext_resource type="Script" uid="uid://cvoat7rbbeiau" path="res://scripts/Stats.gd" id="2_x2c8f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x2c8f"]
+radius = 30.0
+
+[sub_resource type="Resource" id="Resource_pa7xt"]
+script = ExtResource("2_x2c8f")
+metadata/_custom_type_script = "uid://cvoat7rbbeiau"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sd7gc"]
 size = Vector2(13.076924, 13.076924)
@@ -11,6 +19,8 @@ size = Vector2(17, 17)
 
 [node name="PlayerCharcter" type="CharacterBody2D" unique_id=1065657808]
 script = ExtResource("1_sd7gc")
+hitbox_shape = SubResource("CircleShape2D_x2c8f")
+stats = SubResource("Resource_pa7xt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2079046707]
 position = Vector2(0.5, -0.5)

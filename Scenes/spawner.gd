@@ -9,7 +9,6 @@ var distance : float = 400
 
 @export var enemy_types : Array[Enemy]
 
-
 var minute : int:
 	set(value):
 		minute = value
