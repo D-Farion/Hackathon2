@@ -12,7 +12,6 @@ func _ready() -> void:
 	attack_timer.wait_time = 1.0 / stats.base_attack_speed
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
 	attack_timer.start()
-	
 
 func _on_attack_timer_timeout() -> void:
 	var mouse_dir: Vector2 = (get_global_mouse_position() - global_position).normalized()
@@ -37,6 +36,9 @@ func _physics_process(delta: float) -> void:
 func take_damage(amount):
 	stats.health -= amount
 	print(amount)
+
+func _on_stats_changed() -> void:
+	attack_timer.wait_time = 1.0 / stats.base_attack_speed
 
 func _on_health_changed(cur_health: float, max_health: float) -> void:
 	%Health.value = cur_health

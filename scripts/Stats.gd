@@ -26,6 +26,7 @@ const BASE_LEVEL_XP: float = 100.0
 
 signal health_depleted
 signal health_changed(cur_health: int, max_health: int)
+signal stats_changed
 
 @export var base_max_health: float = 100.0
 @export var base_defense: float = 10.0
@@ -93,8 +94,7 @@ func recalulate_stats()-> void:
 				# Makes sure no negative multiplicative buffs, for non exponentially remove this
 				if stat_multipliers[stat_name] < 0.0:
 					stat_multipliers[stat_name] = 0.0
-	
-	
+
 	
 	var stat_sample_pos: float = float(level) / 100.0 - 0.01
 	current_max_health = base_max_health * STAT_CRUVES[BuffableStats.MAX_HEALTH].sample(stat_sample_pos)
@@ -109,6 +109,7 @@ func recalulate_stats()-> void:
 		var cur_property_name: String = str("current_" + stat_name)
 		set(cur_property_name, get(cur_property_name) * stat_multipliers[stat_name])
 	
+	stats_changed.emit()
 
 func _on_health_set(new_value: int) -> void:
 	health = clampf(new_value, 0, current_max_health)
