@@ -7,9 +7,12 @@
 [ext_resource type="Resource" uid="uid://c81qlbtlv3vp2" path="res://Resources/Basic.tres" id="4_pkg7o"]
 [ext_resource type="Resource" uid="uid://dnpxqulke7b13" path="res://Resources/Epic.tres" id="5_gbfbk"]
 [ext_resource type="Resource" uid="uid://cy53xe8yuhb46" path="res://Resources/Elite.tres" id="6_ioo17"]
+[ext_resource type="Script" uid="uid://bkmdrtgw38uj0" path="res://world.gd" id="7_world"]
+[ext_resource type="Script" uid="uid://p7ncfddfxvok" path="res://pause_manager.gd" id="8_pause"]
 
 [node name="World" type="Node2D" unique_id=304163572]
 position = Vector2(288, 160)
+script = ExtResource("7_world")
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=2020022737]
 scroll_offset = Vector2(-457, -175)
@@ -25,10 +28,86 @@ texture = ExtResource("1_pkg7o")
 position = Vector2(-289, -159)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1143464662]
-position = Vector2(-289, -159)
+position = Vector2(5, 11)
 zoom = Vector2(2, 2)
 
 [node name="Spawner" parent="." unique_id=1288933728 node_paths=PackedStringArray("player") instance=ExtResource("2_fj7yv")]
 position = Vector2(222, -146)
 player = NodePath("../PlayerCharcter")
 enemy_types = Array[ExtResource("3_dwbse")]([ExtResource("4_pkg7o"), ExtResource("5_gbfbk"), ExtResource("6_ioo17")])
+
+[node name="GameOverUI" type="CanvasLayer" parent="." unique_id=1492116712]
+visible = false
+
+[node name="UIRoot" type="Control" parent="GameOverUI" unique_id=627586222]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverUI/UIRoot" unique_id=2008623555]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverUI/UIRoot/CenterContainer" unique_id=769525828]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="GameOverUI/UIRoot/CenterContainer/VBoxContainer" unique_id=1693660595]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="GameOverUI/UIRoot/CenterContainer/VBoxContainer" unique_id=143533982]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Restart"
+
+[node name="PauseUI" type="CanvasLayer" parent="." unique_id=256778742]
+visible = false
+
+[node name="UIRoot" type="Control" parent="PauseUI" unique_id=191499591]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseUI/UIRoot" unique_id=845968525]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseUI/UIRoot/CenterContainer" unique_id=2144612297]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="PauseUI/UIRoot/CenterContainer/VBoxContainer" unique_id=273371336]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseUI/UIRoot/CenterContainer/VBoxContainer" unique_id=977596498]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Resume"
+
+[node name="PauseManager" type="Node" parent="." unique_id=1624789393]
+script = ExtResource("8_pause")
+
+[connection signal="pressed" from="GameOverUI/UIRoot/CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PauseUI/UIRoot/CenterContainer/VBoxContainer/ResumeButton" to="PauseManager" method="_on_resume_button_pressed"]
