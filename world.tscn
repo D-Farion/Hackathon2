@@ -12,12 +12,13 @@
 position = Vector2(288, 160)
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=2020022737]
-repeat_size = Vector2(960, 540)
+scroll_offset = Vector2(-454, -175)
+repeat_size = Vector2(476, 262)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1706015448]
-position = Vector2(-733, -359)
-scale = Vector2(0.5, 0.5)
+position = Vector2(90, -45)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_pkg7o")
 
 [node name="PlayerCharcter" parent="." unique_id=1065657808 instance=ExtResource("1_f3sb7")]
