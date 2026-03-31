@@ -12,7 +12,7 @@
 position = Vector2(288, 160)
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=2020022737]
-scroll_offset = Vector2(-454, -175)
+scroll_offset = Vector2(-457, -175)
 repeat_size = Vector2(476, 262)
 repeat_times = 3
 
