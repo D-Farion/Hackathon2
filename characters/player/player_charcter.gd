@@ -8,28 +8,30 @@ extends CharacterBody2D
 @onready var arrow: Sprite2D = $DirectionPointer
 
 func _ready() -> void:
-
-    stats = stats.duplicate(true) as Stats
+	stats = stats.duplicate(true) as Stats
 	stats.setup_stats()
 
 	# Runs once when the node enters the scene tree
 	stats.health_changed.connect(_on_health_changed)
 	stats.changed.connect(_on_stats_changed)
 
-    %Health.max_value = stats.current_max_health
+	%Health.max_value = stats.current_max_health
 	%Health.value = stats.health
 
+	#very basic auto attack timer
 	attack_timer.wait_time = 1.0 / stats.base_attack_speed
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
 	attack_timer.start()
 
 func _process(delta: float) -> void:
+	#creates an arrow in the direction mouse is pointing
 	var mouse_dir = (get_global_mouse_position() - global_position).normalized()
-	print(mouse_dir.angle())
 	arrow.rotation = mouse_dir.angle()
-	arrow.position = mouse_dir * 20
+	arrow.offset = Vector2(80, 0)  # pushes the sprite along its own forward axis
+	arrow.position = Vector2.ZERO  # keep it at player center
 
 func _on_attack_timer_timeout() -> void:
+	#very basic auto attack
 	var mouse_dir: Vector2 = (get_global_mouse_position() - global_position).normalized()
 	var hit_log: HitLog = HitLog.new()
 	var hitbox = HitBox.new(stats, 0.5, hitbox_shape.duplicate(), hit_log)
