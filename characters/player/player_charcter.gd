@@ -8,9 +8,17 @@ extends CharacterBody2D
 @onready var arrow: Sprite2D = $DirectionPointer
 
 func _ready() -> void:
+
+    stats = stats.duplicate(true) as Stats
+	stats.setup_stats()
+
 	# Runs once when the node enters the scene tree
 	stats.health_changed.connect(_on_health_changed)
 	stats.changed.connect(_on_stats_changed)
+
+    %Health.max_value = stats.current_max_health
+	%Health.value = stats.health
+
 	attack_timer.wait_time = 1.0 / stats.base_attack_speed
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
 	attack_timer.start()
@@ -49,6 +57,7 @@ func _on_stats_changed() -> void:
 	attack_timer.wait_time = 1.0 / stats.base_attack_speed
 
 func _on_health_changed(cur_health: float, max_health: float) -> void:
+	%Health.max_value = max_health
 	%Health.value = cur_health
 
 func _on_self_damage_body_entered(body: Node2D) -> void:
