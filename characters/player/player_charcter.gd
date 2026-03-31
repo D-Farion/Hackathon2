@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var hitbox_shape: Shape2D
 @export var stats: Stats
 @onready var attack_timer: Timer = $AttackTimer
+@onready var arrow: Sprite2D = $DirectionPointer
 
 func _ready() -> void:
 	# Runs once when the node enters the scene tree
@@ -13,6 +14,12 @@ func _ready() -> void:
 	attack_timer.wait_time = 1.0 / stats.base_attack_speed
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
 	attack_timer.start()
+
+func _process(delta: float) -> void:
+	var mouse_dir = (get_global_mouse_position() - global_position).normalized()
+	print(mouse_dir.angle())
+	arrow.rotation = mouse_dir.angle()
+	arrow.position = mouse_dir * 20
 
 func _on_attack_timer_timeout() -> void:
 	var mouse_dir: Vector2 = (get_global_mouse_position() - global_position).normalized()
