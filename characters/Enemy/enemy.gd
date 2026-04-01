@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var player_reference : CharacterBody2D
 @export var stats: Stats
 var direction : Vector2
+var knockback : Vector2
 
 var type : Enemy:
 	set(value):
@@ -26,4 +27,9 @@ func _on_death() -> void:
 #enemies move towards player
 func _physics_process(delta):
 	velocity = (player_reference.position - position).normalized() * stats.current_move_speed
-	move_and_collide(velocity * delta)
+	knockback = knockback.move_toward(Vector2.ZERO, 100 * delta)
+	velocity += knockback
+	
+	var collider = move_and_collide(velocity * delta)
+	if collider:
+		collider.get_collider().knockback = (collider.get_collider().global_position - global_position).normalized() * 50
