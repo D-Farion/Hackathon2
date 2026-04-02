@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var display_name : StringName = &"player"
 @export var hitbox_shape: Shape2D
 @export var stats: Stats
-@export var starting_weapons: Array[String] = ["orbital_weapon"]
+@export var starting_weapons: Array[String] = ["basic_melee"]
 
 @onready var attack_timer: Timer = $AttackTimer
 @onready var arrow: Sprite2D = $DirectionPointer
@@ -31,8 +31,6 @@ func _process(delta: float) -> void:
 	arrow.rotation = mouse_dir.angle()
 	arrow.offset = Vector2(80, 0)  # pushes the sprite along its own forward axis
 	arrow.position = Vector2.ZERO  # keep it at player center
-
-
 
 func _physics_process(delta: float) -> void:
 	# Basic 2D movement 

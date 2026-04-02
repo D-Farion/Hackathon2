@@ -5,14 +5,15 @@ var _stats: Stats  # reference to the player's Stats resource
 
 # Preload your weapon scenes here
 const WEAPON_SCENES := {
-	"basic_melee":   preload("res://characters/player/attack/basic_melee.gd"),
+	"basic_melee": preload("res://characters/player/attack/melee/basic_melee.tscn"),
 	"orbital_weapon": preload("res://characters/player/attack/orbital/orbital_weapon.tscn"),
 }
 
+#Holds the weapons that are currently held by player, leave empty
 var _weapons: Dictionary = {}  # { "wand": Weapon, ... }
 
 func _ready() -> void:
-	# Assumes player has a variable called `stats` holding the Stats resource
+	# Gets the players stats to start
 	_stats = get_parent().stats
 
 func add_weapon(weapon_id: String) -> void:

@@ -26,7 +26,7 @@ func _on_death() -> void:
 
 #enemies move towards player
 func _physics_process(delta):
-	velocity = (player_reference.position - position).normalized() * stats.current_move_speed
+	velocity = (player_reference.position - position).normalized() * stats.current_move_speed * 0.4
 	knockback = knockback.move_toward(Vector2.ZERO, 100 * delta)
 	velocity += knockback
 	

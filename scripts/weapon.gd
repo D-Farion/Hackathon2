@@ -3,7 +3,7 @@ extends Node2D
 
 @export var damage_multiplier: float = 1.0  # rename from `damage`
 @export var cooldown: float = 1.0
-@export var area: float = 50.0
+@export var area: float = 30.0
 @export var projectile_speed: float = 300.0
 @export var pierce: int = 1
 @export var projectile_count: int = 1
