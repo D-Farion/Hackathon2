@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cvoat7rbbeiau" path="res://scripts/Stats.gd" id="2_x2c8f"]
 [ext_resource type="Texture2D" uid="uid://c7ybi1tbicqft" path="res://art/arrow.png" id="4_yfbom"]
 [ext_resource type="Script" uid="uid://b7j1esyv0uj3x" path="res://characters/player/direction_pointer.gd" id="5_yfbom"]
+[ext_resource type="Script" uid="uid://7x368dby8le1" path="res://characters/player/weapon_manager.gd" id="6_prg75"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x2c8f"]
 radius = 30.0
@@ -59,14 +60,17 @@ autostart = true
 [node name="Camera2D" type="Camera2D" parent="." unique_id=929102155]
 zoom = Vector2(2, 2)
 
-[node name="AttackTimer" type="Timer" parent="." unique_id=2000810091]
-
 [node name="DirectionPointer" type="Sprite2D" parent="." unique_id=2129363550]
-position = Vector2(-1, -1)
+position = Vector2(17, 0)
 rotation = 4.712389
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_yfbom")
 script = ExtResource("5_yfbom")
+
+[node name="WeaponManager" type="Node" parent="." unique_id=1840835908]
+script = ExtResource("6_prg75")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=2000810091]
 
 [connection signal="body_entered" from="SelfDamage" to="." method="_on_self_damage_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

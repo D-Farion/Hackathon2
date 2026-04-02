@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://btu4of0bsqjv8"]
+
+[ext_resource type="Script" uid="uid://gun23e5nr1xh" path="res://characters/player/attack/orbital/orbital_weapon.gd" id="1_rjwsb"]
+
+[node name="OrbitalWeapon" type="Node2D" unique_id=1652401817]
+script = ExtResource("1_rjwsb")

@@ -4,8 +4,11 @@ extends CharacterBody2D
 @export var display_name : StringName = &"player"
 @export var hitbox_shape: Shape2D
 @export var stats: Stats
+@export var starting_weapons: Array[String] = ["orbital_weapon"]
+
 @onready var attack_timer: Timer = $AttackTimer
 @onready var arrow: Sprite2D = $DirectionPointer
+@onready var weapon_manager: WeaponManager = $WeaponManager
 
 func _ready() -> void:
 	stats = stats.duplicate(true) as Stats
@@ -18,10 +21,9 @@ func _ready() -> void:
 	%Health.max_value = stats.current_max_health
 	%Health.value = stats.health
 
-	#very basic auto attack timer
-	attack_timer.wait_time = 1.0 / stats.base_attack_speed
-	attack_timer.timeout.connect(_on_attack_timer_timeout)
-	attack_timer.start()
+	# Give starting weapons after stats are ready
+	for weapon_id in starting_weapons:
+		weapon_manager.add_weapon(weapon_id)
 
 func _process(delta: float) -> void:
 	#creates an arrow in the direction mouse is pointing
@@ -30,13 +32,7 @@ func _process(delta: float) -> void:
 	arrow.offset = Vector2(80, 0)  # pushes the sprite along its own forward axis
 	arrow.position = Vector2.ZERO  # keep it at player center
 
-func _on_attack_timer_timeout() -> void:
-	#very basic auto attack
-	var mouse_dir: Vector2 = (get_global_mouse_position() - global_position).normalized()
-	var hit_log: HitLog = HitLog.new()
-	var hitbox = HitBox.new(stats, 0.5, hitbox_shape.duplicate(), hit_log)
-	add_child(hitbox)
-	hitbox.global_position = global_position + mouse_dir * 40
+
 
 func _physics_process(delta: float) -> void:
 	# Basic 2D movement 
