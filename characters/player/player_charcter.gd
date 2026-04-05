@@ -5,10 +5,13 @@ extends CharacterBody2D
 @export var hitbox_shape: Shape2D
 @export var stats: Stats
 @export var starting_weapons: Array[String] = ["basic_melee"]
+@export var invincible_time: float = 0.4
 
 @onready var attack_timer: Timer = $AttackTimer
 @onready var arrow: Sprite2D = $DirectionPointer
 @onready var weapon_manager: WeaponManager = $WeaponManager
+var can_take_damage: bool = true
+var touching_enemy: Node2D = null
 
 func _ready() -> void:
 	stats = stats.duplicate(true) as Stats
@@ -24,6 +27,7 @@ func _ready() -> void:
 	# Give starting weapons after stats are ready
 	for weapon_id in starting_weapons:
 		weapon_manager.add_weapon(weapon_id)
+	print(get_children())
 
 func _process(delta: float) -> void:
 	#creates an arrow in the direction mouse is pointing
@@ -44,12 +48,31 @@ func _physics_process(delta: float) -> void:
 			move_toward(velocity.y, 0, stats.base_move_speed)
 		)
 	move_and_slide()
-
-func take_damage(amount):
+	
+func take_damage(amount: float, ignore_invincible: bool = false) -> void:
+	if !can_take_damage and !ignore_invincible:
+		return
 	stats.health -= amount
 	print(amount)
+	
+	start_iframes()
 
-func _on_stats_changed() -> void:
+#creates i-frames, we can test different invincible times
+func start_iframes() -> void:
+	can_take_damage = false
+	
+	#changes opacity to show when damage is taken
+	var invincible_tween = create_tween()
+	invincible_tween.tween_property($PlayerSprite, "modulate", Color(1, 1, 1, 0.1), invincible_time / 4.0)
+	invincible_tween.tween_property($PlayerSprite, "modulate", Color(1, 1, 1, 1), invincible_time / 4.0)
+	invincible_tween.tween_property($PlayerSprite, "modulate", Color(1, 1, 1, 0.1), invincible_time / 4.0)
+	invincible_tween.tween_property($PlayerSprite, "modulate", Color(1, 1, 1, 1), invincible_time / 4.0)
+
+	
+	await get_tree().create_timer(invincible_time).timeout
+	can_take_damage = true
+
+func _on_stats_changed() -> void: 
 	attack_timer.wait_time = 1.0 / stats.base_attack_speed
 
 func _on_health_changed(cur_health: float, max_health: float) -> void:
@@ -57,7 +80,15 @@ func _on_health_changed(cur_health: float, max_health: float) -> void:
 	%Health.value = cur_health
 
 func _on_self_damage_body_entered(body: Node2D) -> void:
+	touching_enemy = body
 	take_damage(body.stats.current_attack)
+	$Timer.start()
+
+#this was needed so that i-frames weren't permanent
+func _on_self_damage_body_exited(body: Node2D) -> void:
+	if body == touching_enemy:
+		touching_enemy = null
+		$Timer.stop()
 
 func _on_timer_timeout() -> void:
 	%Collision.set_deferred("disabled", true)

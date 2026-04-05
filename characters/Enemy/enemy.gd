@@ -16,6 +16,7 @@ var type : Enemy:
 		stats.base_max_health = value.health
 		stats.setup_stats()
 		stats.health_depleted.connect(_on_death)
+		stats.health_changed.connect(_on_health_changed)
 		$HurtBox.owner_stats = stats
 		
 func _ready() -> void:
@@ -23,6 +24,14 @@ func _ready() -> void:
 
 func _on_death() -> void:
 	queue_free()
+
+func _on_health_changed(cur_health: float, max_health: float) -> void:
+	flash_red()
+
+func flash_red() -> void:
+	var hit_tween = create_tween()
+	hit_tween.tween_property($Sprite2D, "modulate", Color(1, 0, 0, 1), 0.2)
+	hit_tween.tween_property($Sprite2D, "modulate", Color(1, 1, 1, 1), 0.05)
 
 #enemies move towards player
 func _physics_process(delta):
