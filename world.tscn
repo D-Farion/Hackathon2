@@ -7,8 +7,10 @@
 [ext_resource type="Resource" uid="uid://c81qlbtlv3vp2" path="res://Resources/Basic.tres" id="4_pkg7o"]
 [ext_resource type="Resource" uid="uid://dnpxqulke7b13" path="res://Resources/Epic.tres" id="5_gbfbk"]
 [ext_resource type="Resource" uid="uid://cy53xe8yuhb46" path="res://Resources/Elite.tres" id="6_ioo17"]
-[ext_resource type="Script" uid="uid://bkmdrtgw38uj0" path="res://world.gd" id="7_world"]
-[ext_resource type="Script" uid="uid://p7ncfddfxvok" path="res://pause_manager.gd" id="8_pause"]
+[ext_resource type="Script" uid="uid://bc0vdwcuy3c4x" path="res://world.gd" id="7_world"]
+[ext_resource type="Script" uid="uid://dhrerhgnxgt35" path="res://pause_manager.gd" id="8_pause"]
+[ext_resource type="PackedScene" uid="uid://c35uyektayvl2" path="res://Scenes/pickups.tscn" id="10_wse8f"]
+[ext_resource type="Resource" uid="uid://bqkhgqt0shq00" path="res://Resources/Pickups/Blue_gem.tres" id="11_ic0uy"]
 
 [node name="World" type="Node2D" unique_id=304163572]
 position = Vector2(288, 160)
@@ -108,6 +110,36 @@ text = "Resume"
 
 [node name="PauseManager" type="Node" parent="." unique_id=1624789393]
 script = ExtResource("8_pause")
+
+[node name="Pickups" parent="." unique_id=1093054214 node_paths=PackedStringArray("player_reference") instance=ExtResource("10_wse8f")]
+position = Vector2(-166, -82)
+type = ExtResource("11_ic0uy")
+player_reference = NodePath("../PlayerCharcter")
+
+[node name="Pickups2" parent="." unique_id=1479868891 node_paths=PackedStringArray("player_reference") instance=ExtResource("10_wse8f")]
+position = Vector2(-108, -144)
+type = ExtResource("11_ic0uy")
+player_reference = NodePath("../PlayerCharcter")
+
+[node name="Pickups3" parent="." unique_id=744130193 node_paths=PackedStringArray("player_reference") instance=ExtResource("10_wse8f")]
+position = Vector2(-241, -56)
+type = ExtResource("11_ic0uy")
+player_reference = NodePath("../PlayerCharcter")
+
+[node name="Pickups4" parent="." unique_id=2103690541 node_paths=PackedStringArray("player_reference") instance=ExtResource("10_wse8f")]
+position = Vector2(-176, -165)
+type = ExtResource("11_ic0uy")
+player_reference = NodePath("../PlayerCharcter")
+
+[node name="Pickups6" parent="." unique_id=861558649 node_paths=PackedStringArray("player_reference") instance=ExtResource("10_wse8f")]
+position = Vector2(-210, -123)
+type = ExtResource("11_ic0uy")
+player_reference = NodePath("../PlayerCharcter")
+
+[node name="Pickups5" parent="." unique_id=1220774567 node_paths=PackedStringArray("player_reference") instance=ExtResource("10_wse8f")]
+position = Vector2(-313, -96)
+type = ExtResource("11_ic0uy")
+player_reference = NodePath("../PlayerCharcter")
 
 [connection signal="pressed" from="GameOverUI/UIRoot/CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="PauseUI/UIRoot/CenterContainer/VBoxContainer/ResumeButton" to="PauseManager" method="_on_resume_button_pressed"]

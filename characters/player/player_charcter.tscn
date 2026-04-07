@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://c7ybi1tbicqft" path="res://art/arrow.png" id="4_yfbom"]
 [ext_resource type="Script" uid="uid://b7j1esyv0uj3x" path="res://characters/player/direction_pointer.gd" id="5_yfbom"]
 [ext_resource type="Script" uid="uid://7x368dby8le1" path="res://characters/player/weapon_manager.gd" id="6_prg75"]
+[ext_resource type="Texture2D" uid="uid://crvgfks0pbh08" path="res://art/progress bar least rounded under.png" id="7_gyv7t"]
+[ext_resource type="Texture2D" uid="uid://dfbra175vgxp1" path="res://art/progress bar least rounded over.png" id="8_r1roe"]
+[ext_resource type="Texture2D" uid="uid://bclv5locq3j3o" path="res://art/progress bar least rounded progress blue.png" id="9_kb10n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x2c8f"]
 radius = 30.0
@@ -19,6 +22,9 @@ size = Vector2(13.076924, 13.076924)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2c8f"]
 size = Vector2(17, 17)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_prg75"]
+radius = 50.0
 
 [node name="PlayerCharcter" type="CharacterBody2D" unique_id=1065657808]
 script = ExtResource("1_sd7gc")
@@ -72,5 +78,34 @@ script = ExtResource("6_prg75")
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=2000810091]
 
+[node name="Magnet" type="Area2D" parent="." unique_id=137996383]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet" unique_id=2096637042]
+shape = SubResource("CircleShape2D_prg75")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1339069238]
+
+[node name="XP" type="TextureProgressBar" parent="CanvasLayer" unique_id=1258086361]
+unique_name_in_owner = true
+offset_left = 560.0
+offset_top = 342.0
+offset_right = 592.0
+offset_bottom = 350.0
+max_value = 10.0
+texture_under = ExtResource("7_gyv7t")
+texture_over = ExtResource("8_r1roe")
+texture_progress = ExtResource("9_kb10n")
+
+[node name="Level" type="Label" parent="CanvasLayer/XP" unique_id=1877935420]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -7.0
+offset_top = 6.0
+offset_right = 47.0
+offset_bottom = 29.0
+text = "Level 1"
+
 [connection signal="body_entered" from="SelfDamage" to="." method="_on_self_damage_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Magnet" to="." method="_on_magnet_area_entered"]

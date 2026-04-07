@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Gem" format=3 uid="uid://bqkhgqt0shq00"]
+
+[ext_resource type="Texture2D" uid="uid://cli78sfp3ydku" path="res://art/Blue_Gem.png" id="1_rmd0j"]
+[ext_resource type="Script" uid="uid://baronsih1cydc" path="res://Gems.gd" id="2_grbnl"]
+
+[resource]
+script = ExtResource("2_grbnl")
+XP = 2.0
+title = "Blue Gem"
+icon = ExtResource("1_rmd0j")
+description = "2 XP"
+metadata/_custom_type_script = "uid://baronsih1cydc"

@@ -13,6 +13,21 @@ extends CharacterBody2D
 var can_take_damage: bool = true
 var touching_enemy: Node2D = null
 
+var XP : int = 0:
+	set(value):
+		XP = value
+		%XP.value = value
+var total_XP : int = 0
+var level : int = 1:
+	set(value):
+		level = value
+		%Level.text = "LV " + str(value)
+		
+		if level >= 3:
+			%XP.max_value = 20
+		elif level >= 7:
+			%XP.max_value = 40
+
 func _ready() -> void:
 	stats = stats.duplicate(true) as Stats
 	stats.setup_stats()
@@ -48,6 +63,7 @@ func _physics_process(delta: float) -> void:
 			move_toward(velocity.y, 0, stats.base_move_speed)
 		)
 	move_and_slide()
+	check_XP()
 	
 func take_damage(amount: float, ignore_invincible: bool = false) -> void:
 	if !can_take_damage and !ignore_invincible:
@@ -94,3 +110,19 @@ func _on_timer_timeout() -> void:
 	%Collision.set_deferred("disabled", true)
 	await get_tree().process_frame
 	%Collision.set_deferred("disabled", false)
+	
+	
+func gain_XP(amount):
+	XP += amount
+	total_XP =+ amount
+	
+	
+func check_XP():
+	if XP > %XP.max_value:
+		XP -= %XP.max_value
+		level += 1
+
+
+func _on_magnet_area_entered(area: Area2D) -> void:
+	if area.has_method("follow"):
+		area.follow(self)

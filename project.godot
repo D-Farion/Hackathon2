@@ -19,6 +19,17 @@ config/icon="res://icon.svg"
 
 enabled=PackedStringArray("res://addons/collapse_folders/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://Resources/": "yellow",
+"res://Resources/Pickups/": "purple",
+"res://Scenes/": "orange",
+"res://art/": "pink",
+"res://characters/": "green",
+"res://scripts/": "red"
+}
+
 [input]
 
 left={
