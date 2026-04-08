@@ -42,7 +42,6 @@ func _ready() -> void:
 	# Give starting weapons after stats are ready
 	for weapon_id in starting_weapons:
 		weapon_manager.add_weapon(weapon_id)
-	print(get_children())
 
 func _process(delta: float) -> void:
 	#creates an arrow in the direction mouse is pointing
