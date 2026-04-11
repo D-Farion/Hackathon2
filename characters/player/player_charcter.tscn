@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b7j1esyv0uj3x" path="res://characters/player/direction_pointer.gd" id="5_yfbom"]
 [ext_resource type="Script" uid="uid://7x368dby8le1" path="res://characters/player/weapon_manager.gd" id="6_prg75"]
 [ext_resource type="Texture2D" uid="uid://crvgfks0pbh08" path="res://art/progress bar least rounded under.png" id="7_gyv7t"]
+[ext_resource type="Script" uid="uid://tjcc0ila2c10" path="res://characters/player/ability_manager.gd" id="7_r1roe"]
 [ext_resource type="Texture2D" uid="uid://dfbra175vgxp1" path="res://art/progress bar least rounded over.png" id="8_r1roe"]
 [ext_resource type="Texture2D" uid="uid://bclv5locq3j3o" path="res://art/progress bar least rounded progress blue.png" id="9_kb10n"]
 
@@ -28,8 +29,11 @@ radius = 50.0
 
 [node name="PlayerCharcter" type="CharacterBody2D" unique_id=1065657808]
 script = ExtResource("1_sd7gc")
+display_name = null
 hitbox_shape = SubResource("CircleShape2D_x2c8f")
 stats = SubResource("Resource_pa7xt")
+starting_weapons = null
+invincible_time = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2079046707]
 position = Vector2(0.5, -0.5)
@@ -75,6 +79,9 @@ script = ExtResource("5_yfbom")
 
 [node name="WeaponManager" type="Node" parent="." unique_id=1840835908]
 script = ExtResource("6_prg75")
+
+[node name="AbilityManager" type="Node" parent="." unique_id=1855984174]
+script = ExtResource("7_r1roe")
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=2000810091]
 

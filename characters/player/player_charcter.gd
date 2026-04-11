@@ -5,11 +5,13 @@ extends CharacterBody2D
 @export var hitbox_shape: Shape2D
 @export var stats: Stats
 @export var starting_weapons: Array[String] = ["basic_melee"]
+@export var starting_abilities: Array[String] = ["dash"]
 @export var invincible_time: float = 0.4
 
 @onready var attack_timer: Timer = $AttackTimer
 @onready var arrow: Sprite2D = $DirectionPointer
 @onready var weapon_manager: WeaponManager = $WeaponManager
+@onready var ability_manager: AbilityManager = $AbilityManager
 var can_take_damage: bool = true
 var touching_enemy: Node2D = null
 
@@ -42,6 +44,8 @@ func _ready() -> void:
 	# Give starting weapons after stats are ready
 	for weapon_id in starting_weapons:
 		weapon_manager.add_weapon(weapon_id)
+	for ability_id in starting_abilities:
+		ability_manager.add_ability(ability_id)
 	print(get_children())
 
 func _process(delta: float) -> void:
