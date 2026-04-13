@@ -1,7 +1,9 @@
 [gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://dnpxqulke7b13"]
 
 [ext_resource type="Script" uid="uid://c0syd8wv7umol" path="res://characters/Enemy/EnemyType.gd" id="1_1ww3j"]
+[ext_resource type="Script" uid="uid://cf1vl6ulgcgl2" path="res://scripts/PickupsResource.gd" id="1_wnahu"]
 [ext_resource type="Texture2D" uid="uid://dfrdc4mndo4d" path="res://art/64x64.png" id="2_53mb6"]
+[ext_resource type="Resource" uid="uid://bqkhgqt0shq00" path="res://Resources/Pickups/Blue_gem.tres" id="2_ctdeo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wnahu"]
 atlas = ExtResource("2_53mb6")
@@ -14,4 +16,5 @@ texture = SubResource("AtlasTexture_wnahu")
 health = 60.0
 damage = 3.0
 scale = Vector2(0.4, 0.4)
+drops = Array[ExtResource("1_wnahu")]([ExtResource("2_ctdeo")])
 metadata/_custom_type_script = "uid://c0syd8wv7umol"

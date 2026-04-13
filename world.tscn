@@ -22,7 +22,7 @@ repeat_size = Vector2(476, 262)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1706015448]
-position = Vector2(90, -45)
+position = Vector2(100, -49)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_pkg7o")
 
