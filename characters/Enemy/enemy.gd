@@ -6,6 +6,9 @@ extends CharacterBody2D
 var direction : Vector2
 var knockback : Vector2
 
+
+var drop = preload("res://Scenes/pickups.tscn")
+
 var type : Enemy:
 	set(value):
 		type = value
@@ -20,9 +23,18 @@ var type : Enemy:
 		$HurtBox.owner_stats = stats
 		
 func _ready() -> void:
-	pass
+	add_to_group("enemies")
+	check_despawn()
+	
+func check_despawn():
+	while true:
+		await get_tree().create_timer(0.5).timeout
+		if player_reference and global_position.distance_to(player_reference.global_position) > 2000:
+			queue_free()
+			return
 
 func _on_death() -> void:
+	drop_item()
 	queue_free()
 
 func _on_health_changed(cur_health: float, max_health: float) -> void:
@@ -42,3 +54,21 @@ func _physics_process(delta):
 	var collider = move_and_collide(velocity * delta)
 	if collider:
 		collider.get_collider().knockback = (collider.get_collider().global_position - global_position).normalized() * 50
+		
+		
+		
+		
+		
+func drop_item():
+	
+	if type.drops.size() == 0:
+		return
+	var item = type.drops.pick_random()
+	
+	var item_to_drop = drop.instantiate()
+	
+	item_to_drop.type = item
+	item_to_drop.position = position
+	item_to_drop.player_reference = player_reference
+	
+	get_tree().current_scene.call_deferred("add_child", item_to_drop)

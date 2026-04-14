@@ -6,6 +6,7 @@ extends Node2D
 
 #how far enemies spawn
 var distance : float = 400
+var max_enemies = 75
 
 @export var enemy_types : Array[Enemy]
 
@@ -39,7 +40,13 @@ func get_random_position() -> Vector2:
 	return player.position + distance * Vector2.RIGHT.rotated(randf_range(0, 2 *PI))
 	
 func amount(number : int = 1):
-	for i in range(number):
+	var current_enemies = get_tree().get_nodes_in_group("enemies").size()
+	var available_space = max_enemies - current_enemies
+	
+	if available_space <= 0:
+		return
+	
+	for i in range(min(number, available_space)):
 		spawn(get_random_position())
 
 func _on_timer_timeout() -> void:
