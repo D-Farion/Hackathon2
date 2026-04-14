@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://p61u1gluf5d4"]
+
+[ext_resource type="Script" uid="uid://300m60y5dvi8" path="res://characters/player/ability/dash/dash.gd" id="1_4f3l2"]
+
+[node name="Dash" type="Node" unique_id=87536006]
+script = ExtResource("1_4f3l2")

@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://2i6uloslouht"]
+
+[ext_resource type="Texture2D" uid="uid://cpoggrhmahaok" path="res://art/sword_swing/5.png" id="1_17p83"]
+[ext_resource type="Script" uid="uid://dcq0cu67g8kj8" path="res://option_slot.gd" id="2_65na8"]
+[ext_resource type="Texture2D" uid="uid://blv322c4ai6jt" path="res://art/Dungeon_brick_wall_grey.png.png" id="3_4nfy6"]
+
+[node name="OptionSlot" type="TextureButton" unique_id=3253668]
+custom_minimum_size = Vector2(315, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_17p83")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("2_65na8")
+
+[node name="Label" type="Label" parent="." unique_id=321288684]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 8.0
+offset_right = 82.0
+offset_bottom = 33.0
+
+[node name="Description" type="Label" parent="." unique_id=1698369032]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 8.0
+offset_right = 307.0
+offset_bottom = 34.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1089943019]
+show_behind_parent = true
+custom_minimum_size = Vector2(315, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_4nfy6")
+region_rect = Rect2(493, 325.5, 938, 459)
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
